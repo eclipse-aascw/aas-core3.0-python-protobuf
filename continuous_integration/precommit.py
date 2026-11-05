@@ -274,10 +274,10 @@ def main() -> int:
         )
 
     if Step.REUSE in selects and Step.REUSE not in skips:
-        if sys.version_info < (3, 9):
+        if sys.version_info < (3, 10):
             print(
                 "Skipped checking the REUSE compliance "
-                "as reuse requires Python 3.9 or newer."
+                "as reuse requires Python 3.10 or newer."
             )
         else:
             print("Checking the REUSE compliance...")

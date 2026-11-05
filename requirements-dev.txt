@@ -18,5 +18,5 @@ aas-core3.0>=1.1.0,<2
 types-protobuf==5.28.3.20241030
 
 # NOTE (aaronzi, 2026-11-05):
-# reuse requires Python 3.9 or newer, so the REUSE check is skipped on Python 3.8.
-reuse==6.3.0; python_version >= "3.9"
+# reuse requires Python 3.10 or newer, so the REUSE check is skipped on Python 3.8 and 3.9.
+reuse==6.3.0; python_version >= "3.10"
