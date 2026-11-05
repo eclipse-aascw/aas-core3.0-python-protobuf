@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2023 aas-core3.0-python-protobuf AUTHORS
+#
+# SPDX-License-Identifier: MIT
+
 # pylint: disable=missing-docstring
 import json
 import os.path

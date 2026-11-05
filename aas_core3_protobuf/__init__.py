@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2023 aas-core3.0-python-protobuf AUTHORS
+#
+# SPDX-License-Identifier: MIT
+
 """Convert AAS instances between Python and Python ProtoBuf objects."""
 
 __version__ = "0.0.2"

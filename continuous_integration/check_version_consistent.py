@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2023 aas-core3.0-python-protobuf AUTHORS
+#
+# SPDX-License-Identifier: MIT
+
 """Check that the version in ``pyproject.toml`` and ``__init__.py`` coincide."""
 
 import importlib.metadata

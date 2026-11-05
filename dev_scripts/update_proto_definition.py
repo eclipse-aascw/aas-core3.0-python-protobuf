@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2023 aas-core3.0-python-protobuf AUTHORS
+#
+# SPDX-License-Identifier: MIT
+
 """Download the definitions file from the aas-core-protobuf repository."""
 
 import argparse
@@ -6,6 +10,23 @@ import os
 import pathlib
 import sys
 import urllib.request
+
+# NOTE (aaronzi, 2026-11-05):
+# The definitions are copied verbatim from aas-core-protobuf, so we attribute
+# them to its authors. If the upstream file already carries a license header
+# (see eclipse-aascw/aas-core-protobuf#5), we keep it and do not prepend ours
+# so that the header is not duplicated.
+#
+# REUSE-IgnoreStart
+_LICENSE_HEADER = """\
+// SPDX-FileCopyrightText: 2024 aas-core-protobuf AUTHORS
+//
+// SPDX-License-Identifier: MIT
+
+"""
+
+_LICENSE_MARKER = "SPDX-License-Identifier:"
+# REUSE-IgnoreEnd
 
 
 def main() -> int:
@@ -37,6 +58,8 @@ def main() -> int:
     print(f"Saving to: {target_path}")
     with target_path.open("wt", encoding="utf-8") as fid:
         now_str = now.strftime("%Y-%m-%d %H:%M:%SZ")
+        if _LICENSE_MARKER not in text:
+            fid.write(_LICENSE_HEADER)
         fid.write(f"// Downloaded from: {url}\n" f"// At: {now_str}\n\n")
         fid.write(text)
 

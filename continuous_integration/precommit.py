@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+# SPDX-FileCopyrightText: 2023 aas-core3.0-python-protobuf AUTHORS
+#
+# SPDX-License-Identifier: MIT
+
 """Run pre-commit checks on the repository."""
 import argparse
 import enum
@@ -23,6 +27,7 @@ class Step(enum.Enum):
     TEST = "test"
     DOCTEST = "doctest"
     CHECK_VERSION_CONSISTENT = "check-version-consistent"
+    REUSE = "reuse"
 
 
 def call_and_report(
@@ -267,6 +272,24 @@ def main() -> int:
             "Skipped checking that aas_core3_protobuf/__init__.py "
             "and pyproject.toml coincide..."
         )
+
+    if Step.REUSE in selects and Step.REUSE not in skips:
+        if sys.version_info < (3, 10):
+            print(
+                "Skipped checking the REUSE compliance "
+                "as reuse requires Python 3.10 or newer."
+            )
+        else:
+            print("Checking the REUSE compliance...")
+            exit_code = call_and_report(
+                verb="check the REUSE compliance",
+                cmd=[sys.executable, "-m", "reuse", "lint"],
+                cwd=repo_root,
+            )
+            if exit_code != 0:
+                return 1
+    else:
+        print("Skipped checking the REUSE compliance.")
 
     return 0
 
