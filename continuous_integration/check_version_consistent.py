@@ -10,7 +10,11 @@ def main() -> None:
     """Execute the main routine."""
     init_version = aas_core3_protobuf.__version__
 
-    pyproject_toml_version = importlib.metadata.version("aas-core3.0-protobuf")
+    # NOTE (aaronzi, 2026-11-05):
+    # Recent setuptools writes the metadata under the normalized name
+    # aas_core3_0_protobuf, and importlib.metadata in Python 3.8 and 3.9 does not
+    # normalize the dotted name aas-core3.0-protobuf, so we look up the normalized one.
+    pyproject_toml_version = importlib.metadata.version("aas_core3_0_protobuf")
 
     if init_version != pyproject_toml_version:
         print(
